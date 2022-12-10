@@ -1,20 +1,21 @@
-import React, { useState, createRef, useEffect } from "react";
+import { createRef, useEffect, useState } from "react";
 import LeaderBoardData from "../data/LeaderBoardData";
 import AnimationBoardList from "./AnimationBoardList";
 import BoardListItem from "./BoardListItem";
 
 export default function LeaderBoard() {
   const [boardData, setBoardData] = useState(LeaderBoardData);
-
+  
   useEffect(() => {
     setTimeout(()=>{
         reorder();
-    }, 5000) 
-  }, [])
+    }, 6000) 
+  }, []);
 
-  const reorder = () => {
+  const reorder = () => {    
     let reOrderedData = boardData
       .map((item) => {
+        item.prevScore = item.score; 
         item.score = Math.floor(Math.random() * 1500);
         return item;
       })
@@ -23,7 +24,7 @@ export default function LeaderBoard() {
 
     setTimeout(()=>{
         reorder();
-    }, 5000)
+    }, 6000)
   };
   return (
     <div className="list-wrapper">
@@ -36,6 +37,7 @@ export default function LeaderBoard() {
                 index={(index + 1).toString()}
                 displayName={item.displayName}
                 userID={item.userID}
+                prevScore={item.prevScore}
                 score={item.score}
                 ref={createRef()}
               ></BoardListItem>

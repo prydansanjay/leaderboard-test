@@ -1,13 +1,16 @@
-import React, { forwardRef } from "react";
+import  { forwardRef } from "react";
+import IncreamentalCounter from "./IncreamentalCounter";
 
 interface BoardListItemProps {
     index: string;
     userID: string;
     displayName: string;
+    prevScore: number;
     score: number;
 };
 
-const BoardListItem = forwardRef(({ index, userID, displayName, score }: BoardListItemProps, ref: any) => (
+const BoardListItem = forwardRef(({ index, userID, displayName, score, prevScore }: BoardListItemProps, ref: any) => {
+   return (
     <div ref={ref} >
         <div className="listItem">
             <div>
@@ -18,11 +21,11 @@ const BoardListItem = forwardRef(({ index, userID, displayName, score }: BoardLi
                 </div>
             </div>
             <div>
-                {score} <span className="gray-text">points</span>
+                <IncreamentalCounter startCounter={prevScore} endCounter={score} />
             </div>
         </div>
     </div>
-));
+)});
 
 export const BoradListItemType = typeof BoardListItem;
 export default BoardListItem;

@@ -21,7 +21,7 @@ const BoardListItem = forwardRef(({ index, userID, displayName, score, prevScore
                 </div>
             </div>
             <div>
-                <IncreamentalCounter startCounter={prevScore} endCounter={score} />
+                <IncreamentalCounter startCounter={prevScore} endCounter={score} /> <span className="gray-text">points</span>
             </div>
         </div>
     </div>
